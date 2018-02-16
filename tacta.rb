@@ -30,6 +30,7 @@ loop {
 
   puts
   response = ask("Who would you like to see? ")
+  break if response == "q"
 
   id = response.to_i
 
@@ -38,3 +39,6 @@ loop {
   puts
   show(contact)
 }
+
+puts
+puts "Bye!"
