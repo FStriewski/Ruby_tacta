@@ -25,6 +25,20 @@ contacts = []
     gets.chomp
   end
 
+  def create_new
+    contact = {}
+
+    puts
+    puts "Enter contact info:"
+
+    contact[:name]  = ask("Name? ")
+    contact[:phone] = ask("Phone? ")
+    contact[:email] = ask("Email? ")
+
+    contact  # returns contact object
+
+  end
+
 loop {
   index(contacts)
 
@@ -33,14 +47,7 @@ loop {
   break if response == "q"
 
   if response == "n"
-   contact = {}
-
-   puts
-   puts "Enter contact info:"
-
-   contact[:name]  = ask("Name? ")
-   contact[:phone] = ask("Phone? ")
-   contact[:email] = ask("Email? ")
+   contact = create_new
 
    contacts << contact
 
@@ -50,6 +57,7 @@ loop {
 
    show(contact)
    puts
+   
  else
    id = response.to_i
 
