@@ -82,13 +82,34 @@ contacts = []
     puts
   end
 
+
+  def action_search(contacts)
+    puts
+    pattern = ask("Search for? ")
+    puts
+
+    contacts.each { |contact|
+      if contact[:name] =~ /\b#{pattern}/i
+        show(contact)
+        puts
+      end
+      }
+  end
+
+
+  def action_error
+    puts
+    puts "Sorry, I don't recognize that command."
+    puts
+  end
+
 # --------------------------------------------------
 
 loop {
   index(contacts)
 
   puts
-  response = ask("Who would you like to see (n for new, d for delete, q to quit)?")
+  response = ask("Who would you like to see (n for new, d for delete, s for search, q to quit)?")
 
   break if response == "q"
 
@@ -96,8 +117,12 @@ loop {
     action_new(contacts)
   elsif response == "d"
     action_delete(contacts)
-  else
+  elsif response == "s"
+    action_search(contacts)
+  elsif response =~ /[0-9]+/
     action_show(contacts, response.to_i)
+  else
+    action_error
   end
 
 
