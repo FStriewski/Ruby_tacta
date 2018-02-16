@@ -53,6 +53,7 @@ end
    contact = create_new
 
    contacts << contact
+   write_contacts(contacts)
 
    puts
    puts "New contact created:"
@@ -84,6 +85,7 @@ end
     puts "Contact for #{contacts[id - 1][:name]} deleted."
 
     contacts.delete_at(id - 1)
+    write_contacts(contacts)
 
     puts
   end
@@ -112,6 +114,7 @@ end
 # --------------------------------------------------
 
 loop {
+  contacts = read_contacts
   index(contacts)
 
   puts
