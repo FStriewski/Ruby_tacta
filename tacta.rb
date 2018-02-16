@@ -56,6 +56,7 @@ contacts = []
    puts
   end
 
+
   def action_show(contacts, id)
     #id = response.to_i
 
@@ -66,18 +67,35 @@ contacts = []
     puts
   end
 
+
+  def action_delete(contacts)
+    puts
+    response = ask("Delete which contact? ")
+
+    id = response.to_i
+
+    puts
+    puts "Contact for #{contacts[id - 1][:name]} deleted."
+
+    contacts.delete_at(id - 1)
+
+    puts
+  end
+
 # --------------------------------------------------
 
 loop {
   index(contacts)
 
   puts
-  response = ask("Who would you like to see (n for new, q to quit)? ")
+  response = ask("Who would you like to see (n for new, d for delete, q to quit)?")
 
   break if response == "q"
 
   if response == "n"
     action_new(contacts)
+  elsif response == "d"
+    action_delete(contacts)
   else
     action_show(contacts, response.to_i)
   end
