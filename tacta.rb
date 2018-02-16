@@ -19,11 +19,15 @@ contacts = []
     puts "email: #{contact[:email]}"
   end
 
+  def ask(prompt)
+    print prompt
+    gets.chomp
+  end
+
 index(contacts)
 
   puts
-  print "Who would you like to see? "
-  response = gets.chomp
+  response = ask("Who would you like to see? ")
 
   id = response.to_i
 
