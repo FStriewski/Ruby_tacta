@@ -6,11 +6,13 @@ contacts = []
   contacts << { name: "Genghis Khan"    , phone: "+976 2 194 2222" , email: "contact@empire.com" }
   contacts << { name: "Malcom X"        , phone: "+1 310 155 8822" , email: "x@theroost.org" }
 
+
   def index(contacts)
     contacts.each_with_index do |contact, index|
       puts "#{index+1}) #{contact[:name]}"
     end
   end
+
 
   def show(contact)
     puts
@@ -20,10 +22,12 @@ contacts = []
     puts
   end
 
+
   def ask(prompt)
     print prompt
     gets.chomp
   end
+
 
   def create_new
     contact = {}
@@ -36,17 +40,10 @@ contacts = []
     contact[:email] = ask("Email? ")
 
     contact  # returns contact object
-
   end
 
-loop {
-  index(contacts)
 
-  puts
-  response = ask("Who would you like to see (n for new, q to quit)? ")
-  break if response == "q"
-
-  if response == "n"
+  def action_new(contacts)
    contact = create_new
 
    contacts << contact
@@ -57,16 +54,34 @@ loop {
 
    show(contact)
    puts
-   
- else
-   id = response.to_i
+  end
 
-   contact = contacts[id - 1]
+  def action_show(contacts, id)
+    #id = response.to_i
 
-   puts
-   show(contact)
-   puts
- end
+    contact = contacts[id - 1]
+
+    puts
+    show(contact)
+    puts
+  end
+
+# --------------------------------------------------
+
+loop {
+  index(contacts)
+
+  puts
+  response = ask("Who would you like to see (n for new, q to quit)? ")
+
+  break if response == "q"
+
+  if response == "n"
+    action_new(contacts)
+  else
+    action_show(contacts, response.to_i)
+  end
+
 
 }
 
