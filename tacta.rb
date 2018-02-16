@@ -17,6 +17,7 @@ contacts = []
     puts contact[:name].to_s
     puts "phone: #{contact[:phone]}"
     puts "email: #{contact[:email]}"
+    puts
   end
 
   def ask(prompt)
@@ -24,7 +25,8 @@ contacts = []
     gets.chomp
   end
 
-index(contacts)
+loop {
+  index(contacts)
 
   puts
   response = ask("Who would you like to see? ")
@@ -35,3 +37,4 @@ index(contacts)
 
   puts
   show(contact)
+}
